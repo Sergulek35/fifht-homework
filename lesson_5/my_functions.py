@@ -6,18 +6,25 @@ def separator(simbol):  # Разделитель
     return simbol * 40
 
 
-def refill_check(check):  # Пополнение счёта
-    sum_buy = int(input('Введите сумму - '))
+# фукцию с пополнением счёта пришлось переделать!
+
+# def refill_check(check):  # Пополнение счёта
+#     sum_buy = int(input('Введите сумму - '))
+#     check += sum_buy
+#     return check
+
+def refill_check(check, sum_buy):
     check += sum_buy
     return check
 
 
 def file_search(folder_files):  # Поиск файлов или папок
+
     for dir, folder, files in os.walk(os.getcwd()):
         if folder_files == 'папки':
-            print(folder)
+            return folder
         elif folder_files == 'файлы':
-            print(files)
+            return files
 
 
 def examination_folder(folder_copy_delete):  # Удаление и копирование папок
