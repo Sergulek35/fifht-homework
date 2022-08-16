@@ -19,7 +19,8 @@ def shop():
 
         choice = input('Выберите пункт меню: ')
         if choice == '1':
-            check = refill_check(check)
+            sum_buy = int(input('Введите сумму - '))
+            check = refill_check(check,sum_buy)
         elif choice == '2':
             while True:
                 buy = int(input('Введите сумму покупки - '))
@@ -44,7 +45,8 @@ def shop():
                     print(separator(','))
                     refill = input('Хотите пополнить счёт? ')
                     if refill in yes:
-                        check = refill_check(check)
+                        sum_buy = int(input('Введите сумму - '))
+                        check = refill_check(check, sum_buy)
                         print('Счёт пополнен! Продолжаем')
                         print(separator(','))
                     else:

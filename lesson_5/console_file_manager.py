@@ -33,10 +33,10 @@ while True:
         print(os.listdir(os.getcwd()))
 
     elif menu_item == '7':
-        file_search('папки')
+        print(file_search('папки'))
 
     elif menu_item == '8':
-        file_search('файлы')
+        print(file_search('файлы'))
 
     elif menu_item == '9':
         print(platform.platform())
