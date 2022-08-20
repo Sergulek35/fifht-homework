@@ -1,12 +1,20 @@
 from my_functions import separator, refill_check
+import os
+import json
 
 
 def shop():
     check = 0
-    spent = 0
     story = {}
     yes = ['да', 'Да', 'ДА']
     no = ['нет', 'Нет', 'НЕТ']
+    if os.path.exists('check.txt'):
+        with open('check.txt', 'r') as f:
+            check = json.load(f)
+
+    if os.path.exists('story.txt'):
+        with open('story.txt', 'r') as f:
+            story = json.load(f)
 
     while True:
         print(separator('/'))
@@ -20,7 +28,8 @@ def shop():
         choice = input('Выберите пункт меню: ')
         if choice == '1':
             sum_buy = int(input('Введите сумму - '))
-            check = refill_check(check,sum_buy)
+            check = refill_check(check, sum_buy)
+
         elif choice == '2':
             while True:
                 buy = int(input('Введите сумму покупки - '))
@@ -28,7 +37,6 @@ def shop():
                     buy_name = input('Введите название покупки: ')
                     check -= buy
                     story[buy_name] = buy
-                    spent += buy
                     print(separator('*'))
                     continued = input('Продолжить покупки? ')
                     if continued in yes:
@@ -54,18 +62,25 @@ def shop():
                         print('Вы в главном меню!')
                         break
 
+
         elif choice == '3':
             print(separator('~'))
-            print(f'Потрачено: {spent}')
+            print(f'      Потрачено: {sum(story.values())}')
             print(f'Всего покупок - {len(story)}')
             numbering = 0
             for key, value in story.items():
                 numbering += 1
                 print(f'{numbering}) {key} ... {value}')
 
+
         elif choice == '4':
             print(separator('^'))
             print('Вы вышли!')
+            with open('check.txt', 'w') as f:
+                json.dump(check, f)
+
+            with open('story.txt', 'w') as f:
+                json.dump(story, f)
             break
         else:
             print('Неверный пункт меню')

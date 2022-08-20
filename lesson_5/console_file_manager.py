@@ -33,23 +33,31 @@ while True:
         print(os.listdir(os.getcwd()))
 
     elif menu_item == '7':
-        print(file_search('папки'))
+        with open('listdir.txt', 'w') as f:
+            f.write('files: ')
+            f.write(str(f'{file_search("файлы")}\n'))
+            f.write('dirs: ')
+            f.write(str(f'{file_search("папки")}'))
+        print('Сохранено успешно! ')
 
     elif menu_item == '8':
-        print(file_search('файлы'))
+        print(file_search('папки'))
 
     elif menu_item == '9':
-        print(platform.platform())
+        print(file_search('файлы'))
 
     elif menu_item == '10':
-        print('Программист')
+        print(platform.platform())
+
     elif menu_item == '11':
+        print('Программист')
+    elif menu_item == '12':
         victory()
 
-    elif menu_item == '12':
+    elif menu_item == '13':
         shop()
 
-    elif menu_item == '13':
+    elif menu_item == '14':
         break
 
     else:
