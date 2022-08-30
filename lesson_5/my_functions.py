@@ -2,6 +2,26 @@ import os
 import shutil
 
 
+def menu_separator(f):
+    def inner():
+        print('=' * 40)
+        result = f()
+        print('-' * 20)
+        return result
+
+    return inner
+
+
+def record(file_search):  # Записывает содержимое (файл или папку) в файл
+    def inner(*args, **kwargs):
+        result = file_search(*args, **kwargs)
+        with open('record.txt', 'w', encoding='utf-8') as f:
+            f.write(f'{result}')
+        return result
+
+    return inner
+
+
 def separator(simbol):  # Разделитель
     return simbol * 40
 
@@ -11,6 +31,7 @@ def refill_check(check, sum_buy):  # пополнение счёта
     return check
 
 
+@record
 def file_search(folder_files):  # Поиск файлов или папок
 
     for dir, folder, files in os.walk(os.getcwd()):
@@ -55,6 +76,7 @@ def examination_files(files_copy_delete):  # Удаление и копиров�
         print('Не удаётся найти файл!')
 
 
+@menu_separator  # изменил меню для тренировки!
 def menu():  # Основное меню
     print(separator('='))
     print('1. создать папку')
