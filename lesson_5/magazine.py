@@ -27,40 +27,47 @@ def shop():
 
         choice = input('Выберите пункт меню: ')
         if choice == '1':
-            sum_buy = int(input('Введите сумму - '))
-            check = refill_check(check, sum_buy)
+            try:
+                sum_buy = int(input('Введите сумму - '))
+                check = refill_check(check, sum_buy)
+            except ValueError:
+                print('Вы ввели не число!\nПереход в меню ')
 
         elif choice == '2':
             while True:
-                buy = int(input('Введите сумму покупки - '))
-                if check >= buy:
-                    buy_name = input('Введите название покупки: ')
-                    check -= buy
-                    story[buy_name] = buy
-                    print(separator('*'))
-                    continued = input('Продолжить покупки? ')
-                    if continued in yes:
-                        print(separator('.'))
-                    elif continued in no:
-                        print('СПАСИБО ЗА ПОКУПКУ!')
-                        break
-                    else:
+                try:
+                    buy = int(input('Введите сумму покупки - '))
+                    if check >= buy:
+                        buy_name = input('Введите название покупки: ')
+                        check -= buy
+                        story[buy_name] = buy
                         print(separator('*'))
-                        print('Неверный ввод !\nВы в главном меню!')
-                        break
-                else:
-                    print('Увы, не хватает средств на счетё!')
-                    print(separator(','))
-                    refill = input('Хотите пополнить счёт? ')
-                    if refill in yes:
-                        sum_buy = int(input('Введите сумму - '))
-                        check = refill_check(check, sum_buy)
-                        print('Счёт пополнен! Продолжаем')
+                        continued = input('Продолжить покупки? ')
+                        if continued in yes:
+                            print(separator('.'))
+                        elif continued in no:
+                            print('СПАСИБО ЗА ПОКУПКУ!')
+                            break
+                        else:
+                            print(separator('*'))
+                            print('Неверный ввод !\nВы в главном меню!')
+                            break
+                    else:
+                        print('Увы, не хватает средств на счетё!')
                         print(separator(','))
-                    else:
-                        print(separator('*'))
-                        print('Вы в главном меню!')
-                        break
+                        refill = input('Хотите пополнить счёт? ')
+                        if refill in yes:
+                            sum_buy = int(input('Введите сумму - '))
+                            check = refill_check(check, sum_buy)
+                            print('Счёт пополнен! Продолжаем')
+                            print(separator(','))
+                        else:
+                            print(separator('*'))
+                            print('Вы в главном меню!')
+                            break
+                except ValueError:
+                    print(separator('. .'))
+                    print('Не правельный ввод\nнужно ввести число! ')
 
 
         elif choice == '3':

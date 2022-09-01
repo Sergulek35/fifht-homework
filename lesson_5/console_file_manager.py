@@ -44,6 +44,7 @@ while True:
         print(file_search('папки'))
 
     elif menu_item == '9':
+
         print(file_search('файлы'))
 
     elif menu_item == '10':

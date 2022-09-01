@@ -17,10 +17,8 @@ def test_filter_month():
     assert filter_month('я') == True
     assert list(filter(filter_month, months)) == ['январь']
     # попробовал ещё так
-    result = []
-    for moth in months:
-        if moth.startswith('я'):
-            result.append(moth)
+
+    result = [moth for moth in months if moth.startswith('я')]
     assert result == list(filter(filter_month, months))
 
 
@@ -31,9 +29,7 @@ def test_filter_month():
 
 
 def test_map():
-    result = []
-    for month in months:
-        result.append(month.upper())
+    result = [month.upper() for month in months]
     assert result == list(map(lambda y: y.upper(), months))
 
 
